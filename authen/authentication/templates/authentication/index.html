@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>home</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'home.css' %}">
+    </head>
+    <body>
+
+    {% for message in messages %}
+    <div class="alert" alert-{{message.tags}} alert-dissmissable fade show" role="alert">
+    <strong> message: </strong> {{message}}
+    {% endfor %}    
+
+    {% if user.is_authenticated %}
+        <div class="welcome">
+        <h1> welcome to evol one </h1>
+        <h3> welcome to evol {{fname}}
+        <h2> you are successfully logged in enjoy </h2>
+        </div>
+        <div class="button">
+        <button type="submit"><a href="signout"> signout</a></button>
+        </div>
+    {% else %}
+        <button type="submit"> <a href="/signup">signup</a> </button>
+        <button type="submit"> <a href="/signin">signin</a> </button>
+    {% endif %}
+
+    </body>
+</html>
